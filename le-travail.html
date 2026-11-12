@@ -1,0 +1,285 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Le travail – TCF Revision</title>
+<style>
+:root{color-scheme:light dark;--bg:#f6f5f1;--cd:#fff;--tx:#1d1d1b;--mu:#6b6a65;--ac:#1d6b57;--ab:#dff0ea;--bd:#e2e0d8;--no:#b3392f;--nb:#f8e1de;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161715;--cd:#222421;--tx:#ecebe6;--mu:#a09f98;--ac:#6fc3a9;--ab:#23382f;--bd:#34362f;--no:#ef8b80;--nb:#40231f}}
+:root[data-theme="dark"]{--bg:#161715;--cd:#222421;--tx:#ecebe6;--mu:#a09f98;--ac:#6fc3a9;--ab:#23382f;--bd:#34362f;--no:#ef8b80;--nb:#40231f}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.45 system-ui,-apple-system,sans-serif}
+.w{max-width:640px;margin:0 auto;padding:12px}
+h1{font-size:20px;margin:4px 0 10px}
+.tabs,.chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px}
+button,select,input{font:inherit;color:inherit}
+button{background:var(--cd);border:1px solid var(--bd);border-radius:10px;padding:8px 12px;cursor:pointer;white-space:nowrap}
+button.on{background:var(--ac);color:var(--bg);border-color:var(--ac)}
+button:disabled{opacity:.9}
+.card{background:var(--cd);border:1px solid var(--bd);border-radius:14px;padding:16px;margin:10px 0}
+.fc{min-height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;cursor:pointer;gap:6px}
+.big{font-size:26px;font-weight:700}
+.mu{color:var(--mu);font-size:14px}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:8px 0}
+.row>.g{flex:1}
+.opt{display:block;width:100%;text-align:left;margin:6px 0;white-space:normal}
+.ok{background:var(--ab)!important;border-color:var(--ac)!important}
+.no{background:var(--nb)!important;border-color:var(--no)!important}
+.ic{padding:4px 9px;border-radius:99px}
+input[type=text],input[type=number],select{background:var(--cd);border:1px solid var(--bd);border-radius:10px;padding:9px;width:100%;box-sizing:border-box}
+.tb{width:100%;border-collapse:collapse}
+.tb button{width:100%;text-align:left;border:0;border-bottom:1px solid var(--bd);border-radius:0;background:none}
+.bar{height:8px;background:var(--bd);border-radius:9px;overflow:hidden}.bar i{display:block;height:100%;background:var(--ac)}
+</style></head><body><div class="w"><h1>🇨🇦 Le travail · TCF revision</h1><div class="tabs" id="tabs"></div><div id="app"></div></div>
+<script>
+const RAW=`n|une entreprise|company
+n|une mission|assignment
+n|une tâche|task
+n|des tâches urgentes|urgent tasks
+n|une responsabilité|responsibility
+n|une réunion|meeting
+n|une équipe|team
+n|la communication|communication
+n|la négociation|negotiation
+n|une formation|training
+n|une formation en ligne|online training
+n|une compétence|skill
+n|des compétences techniques|technical skills
+n|une qualification|qualification
+n|une expérience professionnelle|professional experience
+n|une carrière|career
+n|l’efficacité|effectiveness / efficiency
+n|la productivité|productivity
+n|l’amélioration continue|continuous improvement
+n|la motivation|motivation
+n|la flexibilité|flexibility
+n|la pression|pressure
+n|une politique|policy
+n|une absence|absence
+n|une approbation|approval
+n|des instructions|instructions
+n|une décision|decision
+n|les connaissances|knowledge
+n|les valeurs|values
+n|la satisfaction|satisfaction
+n|la confiance en soi|self-confidence
+n|un projet|project
+n|un domaine|field
+n|un secteur|sector / industry
+n|un délai|deadline / time frame
+n|un rapport|report
+n|un rapport de réunion|meeting report
+n|un planning|schedule
+n|des objectifs|goals / objectives
+n|un salaire|salary
+n|des employés|employees
+n|le management|management
+n|le travail à distance|remote work
+n|des horaires flexibles|flexible hours
+n|l’équilibre travail-vie personnelle|work-life balance
+n|le partage d’informations|information sharing
+n|l’accompagnement|support / guidance
+n|le développement personnel|personal development
+n|le leadership|leadership
+n|le bien-être|well-being
+n|le stress|stress
+n|un conflit|conflict
+n|un défi|challenge
+n|un congé|leave / time off
+n|un investissement|investment
+n|le comportement|behaviour
+n|le bien-être professionnel|professional well-being
+n|un bureau|office
+n|un environnement|environment
+n|un environnement professionnel|professional environment
+n|un manager / une manager|manager
+n|un collègue / une collègue|colleague
+n|un partenaire / une partenaire|partner
+n|un superviseur / une superviseure|supervisor
+v|gérer|to manage
+v|diriger|to lead / direct
+v|superviser|to supervise
+v|coordonner|to coordinate
+v|organiser|to organize
+v|planifier|to plan
+v|établir|to establish
+v|assigner|to assign
+v|travailler|to work
+v|collaborer|to collaborate
+v|participer|to participate
+v|contribuer|to contribute
+v|intégrer|to join / integrate
+v|assister à|to attend
+v|communiquer|to communicate
+v|informer|to inform
+v|demander|to ask for / request
+v|soumettre|to submit
+v|approuver|to approve
+v|vérifier|to check / verify
+v|compléter|to complete
+v|signaler|to report
+v|respecter|to respect / comply with
+v|assurer|to ensure
+v|suivre|to follow
+v|maintenir|to maintain
+v|développer|to develop
+v|améliorer|to improve
+v|atteindre|to achieve / reach
+v|obtenir|to obtain / achieve
+v|augmenter|to increase
+v|réduire|to reduce
+v|résoudre|to solve / resolve
+v|décider|to decide
+v|réfléchir|to reflect / think
+v|dépendre de|to depend on
+v|apprendre|to learn
+v|acquérir|to acquire
+v|progresser|to make progress
+v|former|to train
+v|motiver|to motivate
+v|valoriser|to value / highlight
+v|investir|to invest
+a|professionnel / professionnelle|professional
+a|compétent / compétente|competent / skilled
+a|qualifié / qualifiée|qualified
+a|expérimenté / expérimentée|experienced
+a|responsable|responsible
+a|autonome|independent / self-sufficient
+a|organisé / organisée|organized
+a|ponctuel / ponctuelle|punctual
+a|disponible|available
+a|flexible|flexible
+a|efficace|efficient / effective
+a|productif / productive|productive
+a|motivé / motivée|motivated
+a|enthousiaste|enthusiastic
+a|dévoué / dévouée|dedicated
+a|compétitif / compétitive|competitive
+a|motivant / motivante|motivating
+a|gratifiant / gratifiante|rewarding
+a|enrichissant / enrichissante|enriching
+a|engageant / engageante|engaging
+a|intéressant / intéressante|interesting
+a|utile|useful
+a|pratique|practical
+a|bénéfique|beneficial
+a|précieux / précieuse|valuable
+a|important / importante|important
+a|essentiel / essentielle|essential
+a|nécessaire|necessary
+a|favorable|favourable / supportive
+a|solidaire|supportive / mutually supportive
+a|sain / saine|healthy
+a|durable|sustainable
+a|confortable|comfortable
+a|temporaire|temporary
+a|urgent / urgente|urgent
+a|exigeant / exigeante|demanding
+a|difficile|difficult / challenging
+a|compliqué / compliquée|complicated
+a|stressant / stressante|stressful
+a|insatisfait / insatisfaite|dissatisfied
+a|désagréable|unpleasant`;
+const W=RAW.split('\n').map(l=>{const[t,fr,en]=l.split('|');return{t,fr,en,id:fr}});
+const V=W.filter(w=>w.t==='v');
+const PH=[
+["Si les entreprises renforcent l’égalité entre les sexes, cela aide à augmenter la motivation ainsi que la productivité au bureau.","If companies strengthen gender equality, it helps increase motivation and productivity in the office."],
+["Le travail à distance offre plus de flexibilité et favorise l’équilibre travail-vie personnelle.","Remote work offers more flexibility and supports work-life balance."],
+["Une formation en ligne permet d’acquérir de nouvelles compétences techniques sans quitter la maison.","Online training lets you acquire new technical skills without leaving home."],
+["Mon manager m’a assigné une mission importante avec un délai très court.","My manager assigned me an important assignment with a very short deadline."],
+["Pour atteindre nos objectifs, il faut bien coordonner l’équipe et planifier chaque tâche.","To reach our goals, we must coordinate the team well and plan each task."],
+["Le stress et la pression peuvent réduire l’efficacité des employés.","Stress and pressure can reduce employees’ effectiveness."],
+["Les horaires flexibles contribuent au bien-être professionnel et à la satisfaction au travail.","Flexible hours contribute to professional well-being and job satisfaction."],
+["Un bon leadership motive les collègues et améliore la communication au sein de l’équipe.","Good leadership motivates colleagues and improves communication within the team."],
+["J’ai cinq ans d’expérience professionnelle dans ce secteur.","I have five years of professional experience in this sector."],
+["Il est essentiel de respecter les délais et de signaler les problèmes à son superviseur.","It is essential to meet deadlines and report problems to your supervisor."],
+["Un environnement favorable aide les employés à développer leur confiance en soi.","A supportive environment helps employees build their self-confidence."],
+["Les entreprises qui investissent dans la formation de leurs employés obtiennent de meilleurs résultats.","Companies that invest in training their employees get better results."],
+["Les conflits au travail se résolvent mieux grâce au partage d’informations et à une bonne négociation.","Conflicts at work are resolved better thanks to information sharing and good negotiation."],
+["À mon avis, le salaire est important, mais l’accompagnement et le développement personnel le sont aussi.","In my opinion, salary is important, but support and personal development are too."],
+["D’une part, un emploi stable est rassurant ; d’autre part, un travail temporaire peut être enrichissant.","On the one hand, a stable job is reassuring; on the other, temporary work can be enriching."],
+["Pour réussir sa carrière, il faut être autonome, ponctuel et disponible.","To succeed in your career, you need to be independent, punctual and available."]];
+// conjugation
+const GR=['gérer','intégrer','compléter'];
+const IR={};'apprendre:apprends,apprends,apprend,apprenons,apprenez,apprennent;acquérir:acquiers,acquiers,acquiert,acquérons,acquérez,acquièrent;soumettre:soumets,soumets,soumet,soumettons,soumettez,soumettent;suivre:suis,suis,suit,suivons,suivez,suivent;maintenir:maintiens,maintiens,maintient,maintenons,maintenez,maintiennent;obtenir:obtiens,obtiens,obtient,obtenons,obtenez,obtiennent;atteindre:atteins,atteins,atteint,atteignons,atteignez,atteignent;réduire:réduis,réduis,réduit,réduisons,réduisez,réduisent;résoudre:résous,résous,résout,résolvons,résolvez,résolvent'.split(';').forEach(s=>{const[a,b]=s.split(':');IR[a]=b.split(',')});
+const PP={apprendre:'appris',acquérir:'acquis',soumettre:'soumis',suivre:'suivi',maintenir:'maintenu',obtenir:'obtenu',atteindre:'atteint',réduire:'réduit',résoudre:'résolu',dépendre:'dépendu'};
+const FS={acquérir:'acquerr',maintenir:'maintiendr',obtenir:'obtiendr'};
+const P=['je','tu','il/elle','nous','vous','ils/elles'],AV=['ai','as','a','avons','avez','ont'],FE=['ai','as','a','ons','ez','ont'];
+function pres(b){if(IR[b])return IR[b];
+ if(b.endsWith('er')){const s=b.slice(0,-2),g=GR.includes(b)?s.replace(/é([^é]*)$/,'è$1'):s;return[g+'e',g+'es',g+'e',s+(s.endsWith('g')?'eons':'ons'),s+'ez',g+'ent']}
+ if(b.endsWith('ir')){const s=b.slice(0,-2);return[s+'is',s+'is',s+'it',s+'issons',s+'issez',s+'issent']}
+ const s=b.slice(0,-2);return[s+'s',s+'s',s,s+'ons',s+'ez',s+'ent']}
+const pp=b=>PP[b]||(b.endsWith('er')?b.slice(0,-2)+'é':b.endsWith('ir')?b.slice(0,-2)+'i':b.slice(0,-2)+'u');
+const fs=b=>FS[b]||(b.endsWith('re')?b.slice(0,-1):b);
+const el=(i,f,t)=>(i===0&&/^[aeiouhéèêâîô]/i.test(f)?'j’':P[i]+' ')+f+t;
+function conj(v){const[b,...r]=v.split(' '),t=r.length?' '+r.join(' '):'';
+ return[['Présent',pres(b).map((f,i)=>el(i,f,t))],['Passé composé',AV.map((a,i)=>el(i,a+' '+pp(b),t))],['Futur simple',FE.map((e,i)=>el(i,fs(b)+e,t))]]}
+// helpers
+const $=s=>document.querySelector(s);
+let S;try{S=JSON.parse(localStorage.getItem('tv1'))}catch(e){}
+S=S||{known:{},star:{},hist:[],wrong:{}};
+const save=()=>{try{localStorage.setItem('tv1',JSON.stringify(S))}catch(e){}};
+const sh=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]]}return a};
+function say(t,r=.9){try{const u=new SpeechSynthesisUtterance(t.replace(' / ',', '));u.lang='fr-CA';const vs=speechSynthesis.getVoices();const v=vs.find(v=>v.lang.replace('_','-')==='fr-CA')||vs.find(v=>v.lang.startsWith('fr'));if(v)u.voice=v;u.rate=r;speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){}}
+const nz=s=>s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[’']/g,"'").replace(/[^a-z' ]/g,' ').replace(/\s+/g,' ').trim();
+const na=s=>s.replace(/^(un|une|le|la|les|des|l')\s*/,'');
+const ok=(w,v)=>{v=na(nz(v));return v&&w.fr.split(' / ').some(a=>na(nz(a))===v)};
+const pool=c=>c==='all'?W:c==='star'?W.filter(w=>S.star[w.id]):c==='todo'?W.filter(w=>!S.known[w.id]):c==='wrong'?W.filter(w=>S.wrong[w.id]):W.filter(w=>w.t===c);
+const CATS=[['all','All'],['n','Nouns'],['v','Verbs'],['a','Adjectives'],['star','★ Starred'],['todo','Not known yet'],['wrong','My mistakes']];
+const chips=(cur,a)=>`<div class="chips">${CATS.map(([k,l])=>`<button class="${cur===k?'on':''}" data-a="${a}" data-v="${k}">${l}</button>`).join('')}</div>`;
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+let T='study',ST={cat:'all',i:0,flip:0,dir:'fr',shuf:0,deck:null},QS={m:'mix',c:'all',n:10},Q=null,CV='gérer',rs=0;
+function deck(){ST.deck=pool(ST.cat);if(ST.shuf)ST.deck=sh(ST.deck);ST.i=0;ST.flip=0}
+const tn={n:'noun',v:'verb',a:'adjective'};
+function study(){if(!ST.deck)deck();const d=ST.deck,w=d[ST.i];let h=chips(ST.cat,'cat');
+ h+=`<div class="row"><button class="${ST.shuf?'on':''}" data-a="shuf">🔀 Shuffle</button><button data-a="dir">Front: ${ST.dir==='fr'?'French':'English'}</button><span class="mu g" style="text-align:right">${d.length?ST.i+1:0}/${d.length}</span></div>`;
+ if(!w)return h+'<div class="card mu">No cards in this set yet.</div>';
+ const fr=`<div class="big">${w.fr}</div><button class="ic" data-a="say" data-v="${w.fr}">🔊</button> <button class="ic" data-a="say" data-v="${w.fr}" data-r=".5">🐢 slow</button>`,en=`<div class="big">${w.en}</div>`;
+ const front=ST.dir==='fr'?fr:en,back=ST.dir==='fr'?en:fr;
+ h+=`<div class="card fc" data-a="flip"><div class="mu">${tn[w.t]}${S.known[w.id]?' · ✓ known':''}</div>${ST.flip?`${front}<hr style="width:60%;border:0;border-top:1px solid var(--bd)">${back}${w.t==='v'?`<button data-a="goconj" data-v="${w.fr}">Conjugate →</button>`:''}`:`${front}<div class="mu">tap to flip</div>`}</div>`;
+ h+=`<div class="row"><button class="g" data-a="know" data-v="0">↻ Still learning</button><button class="g on" data-a="know" data-v="1">✓ I know it</button><button data-a="star">${S.star[w.id]?'★':'☆'}</button></div><div class="row"><button class="g" data-a="prev">← Prev</button><button class="g" data-a="next">Next →</button></div>`;
+ const k=W.filter(x=>S.known[x.id]).length;return h+`<div class="mu">Known: ${k}/${W.length}</div>`}
+function quiz(){if(Q&&Q.done)return qend();if(Q)return qview();
+ const M=[['mix','Mixed'],['mcq_fe','MCQ: French → English'],['mcq_ef','MCQ: English → French'],['type_ef','Type the French (English → French)'],['listen','Listening: hear it, pick the meaning'],['speak','Pronunciation: say it aloud']];
+ const n=pool(QS.c).length;
+ return `<div class="card"><p class="mu">Activity</p><select id="qm">${M.map(([k,l])=>`<option value="${k}" ${QS.m===k?'selected':''}>${l}</option>`).join('')}</select><p class="mu">Words from</p><select id="qc">${CATS.map(([k,l])=>`<option value="${k}" ${QS.c===k?'selected':''}>${l} (${pool(k).length})</option>`).join('')}</select><p class="mu">Number of questions</p><input id="qn" type="number" min="1" max="${W.length}" value="${QS.n}"><div class="row"><button class="on g" data-a="qstart" ${n<4?'disabled':''}>Start quiz</button></div>${n<4?'<p class="mu">Pick a set with at least 4 words.</p>':''}</div>`}
+function qnext(){if(Q.i>=Q.list.length){Q.done=1;S.hist.unshift({d:new Date().toLocaleDateString(),s:Q.sc,n:Q.list.length,m:Q.mode});S.hist=S.hist.slice(0,15);save();return render()}
+ const w=Q.list[Q.i];let m=Q.mode;if(m==='mix')m=sh(SR?['mcq_fe','mcq_ef','listen','type_ef','speak']:['mcq_fe','mcq_ef','listen','type_ef'])[0];
+ const c=Q.cur={w,m,fb:0};if(m.startsWith('mcq')||m==='listen')c.o=sh([w,...sh(W.filter(x=>x.t===w.t&&x.id!==w.id&&x.en!==w.en&&x.fr!==w.fr)).slice(0,3)]);
+ render();if(m==='listen')say(w.fr)}
+function grade(g){const c=Q.cur;c.fb=g?1:2;if(g){Q.sc++;delete S.wrong[c.w.id]}else S.wrong[c.w.id]=1;save();render()}
+function qview(){const c=Q.cur,w=c.w,m=c.m,f=m==='mcq_ef'?'fr':'en';
+ let h=`<div class="mu">Question ${Q.i+1}/${Q.list.length} · score ${Q.sc}</div><div class="card">`;
+ const sp=`<button class="ic" data-a="say" data-v="${w.fr}">🔊</button>`;
+ if(m==='mcq_fe')h+=`<div class="big">${w.fr} ${sp}</div><p class="mu">What does it mean?</p>`;
+ if(m==='mcq_ef')h+=`<div class="big">${w.en}</div><p class="mu">Choose the French</p>`;
+ if(m==='listen')h+=`<div class="big">${sp} 🎧</div><p class="mu">Listen, then choose the meaning</p>`;
+ if(m==='type_ef')h+=`<div class="big">${w.en}</div><p class="mu">Type the French (articles optional, accents forgiven)</p>${c.fb?`<p>You typed: ${c.typed||'—'}</p>`:'<input id="ta" type="text" autocapitalize="off" autocomplete="off" autocorrect="off">'}`;
+ if(m==='speak')h+=`<div class="big">${w.en}</div><p class="mu">Say it in French${c.heard?` · heard: “${c.heard}”`:''}</p>`;
+ if(c.o)h+=c.o.map(o=>`<button class="opt ${c.fb?(o[f]===w[f]?'ok':o[f]===c.pick?'no':''):''}" data-a="qopt" data-v="${o[f]}" ${c.fb?'disabled':''}>${o[f]}</button>`).join('');
+ if(!c.fb){if(m==='type_ef')h+=`<button class="on" data-a="qchk">Check</button>`;
+  if(m==='speak'){if(SR&&!c.rev)h+=`<div class="row"><button class="on g" data-a="qmic">🎤 Speak</button><button data-a="qrev">Self-check</button></div>${c.err?'<p class="mu">Couldn’t hear you. Try again or self-check.</p>':''}`;else h+=`<p>Say it, then listen: ${sp}</p><div class="big">${w.fr}</div><div class="row"><button class="g on" data-a="qself" data-v="1">I said it right</button><button class="g" data-a="qself" data-v="0">Not quite</button></div>`}}
+ else h+=`<p class="${c.fb===1?'':'mu'}">${c.fb===1?'✅ Correct!':'❌ Answer:'} <b>${w.fr}</b> — ${w.en} ${sp}</p><button class="on" data-a="qnext">${Q.i+1>=Q.list.length?'Finish':'Next →'}</button>`;
+ return h+'</div><button data-a="qquit">Quit</button>'}
+function qend(){const p=Math.round(Q.sc/Q.list.length*100),wr=Object.keys(S.wrong).length;
+ return `<div class="card"><div class="big">${Q.sc}/${Q.list.length} · ${p}%</div><p>${p>=80?'Très bien !':p>=50?'Pas mal, keep going.':'Keep practising, you’ll get there.'}</p><div class="row"><button class="on" data-a="qnew">New quiz</button>${wr?`<button data-a="qrw">Review my mistakes (${wr})</button>`:''}</div></div>`}
+function conjv(){return `<select id="cv">${V.map(v=>`<option ${v.fr===CV?'selected':''}>${v.fr}</option>`).join('')}</select><p class="mu">${V.find(v=>v.fr===CV).en} · tap a line to hear it</p>`+conj(CV).map(([n,r])=>`<div class="card"><b>${n}</b><div class="tb">${r.map(x=>`<button data-a="say" data-v="${x}">${x}</button>`).join('')}</div></div>`).join('')}
+function phr(){return `<p class="mu">Useful sentences for the theme “le travail”. Tap 🔊 to listen.</p>`+PH.map(([f,e])=>`<div class="card"><div>${f}</div><div class="mu">${e}</div><button class="ic" data-a="say" data-v="${f}">🔊</button> <button class="ic" data-a="say" data-v="${f}" data-r=".6">🐢</button></div>`).join('')}
+function prog(){const r=(l,w)=>{const a=w.length,k=w.filter(x=>S.known[x.id]).length;return `<p>${l}: ${k}/${a}</p><div class="bar"><i style="width:${a?k/a*100:0}%"></i></div>`};
+ return `<div class="card">${r('All words',W)}${r('Nouns',pool('n'))}${r('Verbs',pool('v'))}${r('Adjectives',pool('a'))}<p class="mu">Starred: ${Object.keys(S.star).length} · Mistakes to review: ${Object.keys(S.wrong).length}</p></div><div class="card"><b>Recent quizzes</b>${S.hist.length?S.hist.map(h=>`<p class="mu">${h.d} · ${h.s}/${h.n} (${h.m})</p>`).join(''):'<p class="mu">None yet.</p>'}</div><button data-a="reset">${rs?'Tap again to erase everything':'Reset progress'}</button><p class="mu">Progress is saved automatically in this browser.</p>`}
+const TABS=[['study','Flashcards'],['quiz','Quiz'],['conj','Verbs'],['phr','Phrases'],['prog','Progress']];
+function render(){$('#tabs').innerHTML=TABS.map(([k,l])=>`<button class="${T===k?'on':''}" data-a="tab" data-v="${k}">${l}</button>`).join('');
+ $('#app').innerHTML={study,quiz,conj:conjv,phr,prog}[T]()}
+const A={tab(v){T=v;rs=0;render()},cat(v){ST.cat=v;deck();render()},shuf(){ST.shuf^=1;deck();render()},dir(){ST.dir=ST.dir==='fr'?'en':'fr';ST.flip=0;render()},
+ flip(){ST.flip^=1;render()},next(){if(ST.deck.length){ST.i=(ST.i+1)%ST.deck.length;ST.flip=0;render()}},prev(){if(ST.deck.length){ST.i=(ST.i-1+ST.deck.length)%ST.deck.length;ST.flip=0;render()}},
+ know(v){const w=ST.deck[ST.i];if(v==='1')S.known[w.id]=1;else delete S.known[w.id];save();A.next()},star(){const w=ST.deck[ST.i];S.star[w.id]?delete S.star[w.id]:S.star[w.id]=1;save();render()},
+ say(v,e){say(v,parseFloat(e.dataset.r)||.9)},goconj(v){CV=v;T='conj';render()},
+ qstart(){const l=pool(QS.c);Q={mode:QS.m,list:sh(l).slice(0,Math.max(1,Math.min(QS.n||10,l.length))),i:0,sc:0};qnext()},
+ qopt(v){const c=Q.cur;if(c.fb)return;c.pick=v;grade(v===c.w[c.m==='mcq_ef'?'fr':'en'])},
+ qchk(){const c=Q.cur;c.typed=$('#ta').value;grade(ok(c.w,c.typed))},qrev(){Q.cur.rev=1;render()},qself(v){grade(v==='1')},
+ qmic(){const c=Q.cur,r=new SR();r.lang='fr-CA';r.onresult=e=>{c.heard=e.results[0][0].transcript;grade(ok(c.w,c.heard))};r.onerror=r.onnomatch=()=>{c.err=1;render()};try{r.start()}catch(e){}},
+ qnext(){Q.i++;qnext()},qquit(){Q=null;render()},qnew(){Q=null;render()},
+ qrw(){QS.c='wrong';QS.m='mix';const l=pool('wrong');Q={mode:'mix',list:sh(l),i:0,sc:0};qnext()},
+ reset(){if(!rs){rs=1;render();return}S={known:{},star:{},hist:[],wrong:{}};save();rs=0;ST.deck=null;render()}};
+document.addEventListener('click',e=>{const b=e.target.closest('[data-a]');if(b&&A[b.dataset.a])A[b.dataset.a](b.dataset.v,b)});
+document.addEventListener('change',e=>{const i=e.target.id;if(i==='cv'){CV=e.target.value;render()}if(i==='qm')QS.m=e.target.value;if(i==='qc'){QS.c=e.target.value;render()}if(i==='qn')QS.n=parseInt(e.target.value)||10});
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.id==='ta')A.qchk()});
+try{speechSynthesis.getVoices()}catch(e){}
+render();
+</script></body></html>
